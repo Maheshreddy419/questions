@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Question Service- Displaying questions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <link href="../../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div class="container">
+
+<h1>Questions</h1>
+    <div th:if="${not #lists.isEmpty(questions)}">
+        <h2>Registered Questions</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>question UId</th>
+                <th>Question</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Tag</th>
+                <th>URL</th>
+                <th>Answers</th>
+            </tr>
+            <tr th:each="question : ${questions}">
+                <td th:text="${question.question_uid.toHexString()}"></td><td></td>
+                <td th:text="${question.question}"></td><td></td>
+                <td th:text="${question.question_desc}"></td><td></td>
+                <td th:text="${question.question_type}"></td><td></td>
+                <td th:text="${question.question_tag}"></td><td></td>
+                <td th:text="${question.question_answers}">
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <a href="/questionviews/questionform">Add New Question</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
